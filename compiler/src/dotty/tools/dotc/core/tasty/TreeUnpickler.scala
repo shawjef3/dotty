@@ -331,8 +331,6 @@ class TreeUnpickler(reader: TastyReader, nameAtRef: NameRef => TermName, posUnpi
           ConstantType(Constant(readType()))
         case ENUMconst =>
           ConstantType(Constant(readTermRef().termSymbol))
-        case BYNAMEtype =>
-          ExprType(readType())
       }
 
       if (tag < firstLengthTreeTag) readSimpleType() else readLengthType()
@@ -905,8 +903,6 @@ class TreeUnpickler(reader: TastyReader, nameAtRef: NameRef => TermName, posUnpi
           New(readTpt())
         case SINGLETONtpt =>
           SingletonTypeTree(readTerm())
-        case BYNAMEtpt =>
-          ByNameTypeTree(readTpt())
         case _ =>
           readPathTerm()
       }

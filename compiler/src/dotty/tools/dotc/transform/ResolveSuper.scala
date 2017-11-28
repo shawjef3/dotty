@@ -50,8 +50,7 @@ class ResolveSuper extends MiniPhase with IdentityDenotTransformer { thisPhase =
 
   override def phaseName: String = "resolveSuper"
 
-  override def runsAfter = Set(classOf[ElimByName], // verified empirically, need to figure out what the reason is.
-                               classOf[AugmentScala2Traits])
+  override def runsAfter = Set(classOf[AugmentScala2Traits])
 
   override def changesMembers = true // the phase adds super accessors and method forwarders
 

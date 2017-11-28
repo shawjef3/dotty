@@ -453,8 +453,6 @@ class RefinedPrinter(_ctx: Context) extends PlainPrinter(_ctx) {
         changePrec(GlobalPrec) {
           tparamsText(tparams) ~ " -> " ~ toText(body)
         }
-      case ByNameTypeTree(tpt) =>
-        "=> " ~ toTextLocal(tpt)
       case TypeBoundsTree(lo, hi) =>
         optText(lo)(" >: " ~ _) ~ optText(hi)(" <: " ~ _)
       case Bind(name, body) =>

@@ -503,9 +503,6 @@ class TreePickler(pickler: TastyPickler) {
         case OrTypeTree(tp1, tp2) =>
           writeByte(ORtpt)
           withLength { pickleTree(tp1); pickleTree(tp2) }
-        case ByNameTypeTree(tp) =>
-          writeByte(BYNAMEtpt)
-          pickleTree(tp)
         case Annotated(tree, annot) =>
           writeByte(ANNOTATEDtpt)
           withLength { pickleTree(tree); pickleTree(annot.tree) }

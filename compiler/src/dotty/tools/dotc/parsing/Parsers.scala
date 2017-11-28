@@ -779,9 +779,6 @@ object Parsers {
             accept(RPAREN)
             if (isImplicit || isValParamList || in.token == ARROW) functionRest(ts)
             else {
-              for (t <- ts)
-                if (t.isInstanceOf[ByNameTypeTree])
-                  syntaxError(ByNameParameterNotSupported())
               val tuple = atPos(start) { makeTupleOrParens(ts) }
               infixTypeRest(
                 refinedTypeRest(
@@ -933,17 +930,13 @@ object Parsers {
       else commaSeparated(() => typParser())
     }
 
-    /** FunArgType ::=  Type | `=>' Type
+    /** FunArgType ::=  Type
      */
-    val funArgType = () =>
-      if (in.token == ARROW) atPos(in.skipToken()) { ByNameTypeTree(typ()) }
-      else typ()
+    val funArgType = () => typ()
 
-    /** ParamType ::= [`=>'] ParamValueType
+    /** ParamType ::= ParamValueType
      */
-    def paramType(): Tree =
-      if (in.token == ARROW) atPos(in.skipToken()) { ByNameTypeTree(paramValueType()) }
-      else paramValueType()
+    def paramType(): Tree = paramValueType()
 
     /** ParamValueType ::= Type [`*']
      */

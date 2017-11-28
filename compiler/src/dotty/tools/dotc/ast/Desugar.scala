@@ -374,7 +374,6 @@ object desugar {
       def copyMeths = {
         def isRepeated(tree: Tree): Boolean = tree match {
           case PostfixOp(_, Ident(tpnme.raw.STAR)) => true
-          case ByNameTypeTree(tree1) => isRepeated(tree1)
           case _ => false
         }
         val hasRepeatedParam = constrVparamss.exists(_.exists {

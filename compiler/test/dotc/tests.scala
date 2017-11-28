@@ -339,7 +339,7 @@ class tests extends CompilerTest {
   @Test def tasty_dotc_transform = compileList("tasty_dotc_transform", List(
     "AugmentScala2Traits.scala", "CapturedVars.scala", "CheckReentrant.scala", "CheckStatic.scala",
     "ClassOf.scala", "CollectEntryPoints.scala", "Constructors.scala", "CrossCastAnd.scala",
-    "CtxLazy.scala", "ElimByName.scala", "ElimErasedValueType.scala", "ElimRepeated.scala",
+    "CtxLazy.scala", "ElimErasedValueType.scala", "ElimRepeated.scala",
     "ElimStaticThis.scala", "Erasure.scala", "ExpandPrivate.scala", "ExpandSAMs.scala",
     "ExplicitOuter.scala", "ExtensionMethods.scala", "FirstTransform.scala",
     "Flatten.scala", "FullParameterization.scala", "FunctionalInterfaces.scala", "GetClass.scala",

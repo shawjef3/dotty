@@ -591,8 +591,6 @@ object TastyFormat {
     case ANDtpt => "ANDtpt"
     case ORtype => "ORtype"
     case ORtpt => "ORtpt"
-    case BYNAMEtype => "BYNAMEtype"
-    case BYNAMEtpt => "BYNAMEtpt"
     case POLYtype => "POLYtype"
     case METHODtype => "METHODtype"
     case TYPELAMBDAtype => "TYPELAMBDAtype"

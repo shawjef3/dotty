@@ -17,20 +17,20 @@ test("plain", "ab", testPlain("a", "b"))
 val testPlainR = testPlain _
 test("plain r", "cd", testPlainR("c", "d"))
 
-def testOldByName(x: => Int) = x + 1
-test("old by name", 3, testOldByName(1 + 1))
+def testOldByName(x: () => Int) = x + 1
+test("old by name", 3, testOldByName(() => 1 + 1))
 
 val testOldByNameR = testOldByName _
-test("old by name r", 3, testOldByNameR(1 + 1))
+test("old by name r", 3, testOldByNameR(() => 1 + 1))
 
-val testOldByNameS: (=> Int) => Int = testOldByName _
-test("old by name s", 3, testOldByNameS(2))
+val testOldByNameS: (Function0[Int]) => Int = testOldByName _
+test("old by name s", 3, testOldByNameS(() => 2))
 
-def testRegThenByName(x: Int, y: => Int): Int = x + y
+def testRegThenByName(x: Int, y: Function0[Int]): Int = x + y
 test("reg then by name", 7, testRegThenByName(3, 2 * 2))
 
-val testRegThenByNameS: (Int, =>Int) => Int = testRegThenByName _
-test("reg then by name s", 8, testRegThenByNameS(2, 12 / 2))
+val testRegThenByNameS: (Int, () => Int) => Int = testRegThenByName _
+test("reg then by name s", 8, testRegThenByNameS(2, () => 12 / 2))
 
 def testVarargs(x: Int*) = x.reduceLeft((x: Int, y: Int) => x + y)
 test("varargs", 4, testVarargs(1, 2, 1))
