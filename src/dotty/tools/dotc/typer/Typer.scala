@@ -1008,11 +1008,6 @@ class Typer extends Namer with TypeAssigner with Applications with Implicits wit
     assignType(cpy.TypeLambdaTree(tree)(tparams1, body1), tparams1, body1)
   }
 
-  def typedByNameTypeTree(tree: untpd.ByNameTypeTree)(implicit ctx: Context): ByNameTypeTree = track("typedByNameTypeTree") {
-    val result1 = typed(tree.result)
-    assignType(cpy.ByNameTypeTree(tree)(result1), result1)
-  }
-
   /** Define a new symbol associated with a Bind or pattern wildcard and
    *  make it gadt narrowable.
    */
@@ -1352,7 +1347,6 @@ class Typer extends Namer with TypeAssigner with Applications with Implicits wit
           case tree: untpd.RefinedTypeTree => typedRefinedTypeTree(tree)
           case tree: untpd.AppliedTypeTree => typedAppliedTypeTree(tree)
           case tree: untpd.TypeLambdaTree => typedTypeLambdaTree(tree)(localContext(tree, NoSymbol).setNewScope)
-          case tree: untpd.ByNameTypeTree => typedByNameTypeTree(tree)
           case tree: untpd.TypeBoundsTree => typedTypeBoundsTree(tree)
           case tree: untpd.Alternative => typedAlternative(tree, pt)
           case tree: untpd.PackageDef => typedPackageDef(tree)

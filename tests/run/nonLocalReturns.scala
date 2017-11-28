@@ -11,9 +11,9 @@ object Test {
   }
 
   def baz(x: Int): Int =
-    byName { return -2; 3 }
+    byName { () => return -2; 3 }
 
-  def byName(x: => Int): Int = x
+  def byName(x: () => Int): Int = x
 
   def bam(): Int = { // no non-local return needed here
     val foo = {

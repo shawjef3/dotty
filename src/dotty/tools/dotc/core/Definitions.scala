@@ -370,7 +370,6 @@ class Definitions {
   lazy val BoxedDoubleModule  = ctx.requiredModule("java.lang.Double")
   lazy val BoxedUnitModule    = ctx.requiredModule("java.lang.Void")
 
-  lazy val ByNameParamClass2x = specialPolyClass(tpnme.BYNAME_PARAM_CLASS, Covariant, Seq(AnyType))
   lazy val EqualsPatternClass = specialPolyClass(tpnme.EQUALS_PATTERN, EmptyFlags, Seq(AnyType))
 
   lazy val RepeatedParamClass = specialPolyClass(tpnme.REPEATED_PARAM_CLASS, Covariant, Seq(ObjectType, SeqType))
@@ -757,7 +756,6 @@ class Definitions {
     AnyClass,
     AnyRefAlias,
     RepeatedParamClass,
-    ByNameParamClass2x,
     AnyValClass,
     NullClass,
     NothingClass,

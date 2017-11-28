@@ -21,8 +21,6 @@ class NonLocalReturns extends MiniPhaseTransform { thisTransformer =>
   import NonLocalReturns._
   import ast.tpd._
 
-  override def runsAfter: Set[Class[_ <: Phase]] = Set(classOf[ElimByName])
-
   private def ensureConforms(tree: Tree, pt: Type)(implicit ctx: Context) =
     if (tree.tpe <:< pt) tree
     else Erasure.Boxing.adaptToType(tree, pt)

@@ -600,12 +600,6 @@ object Trees {
     type ThisTree[-T >: Untyped] = TypeLambdaTree[T]
   }
 
-  /** => T */
-  case class ByNameTypeTree[-T >: Untyped] private[ast] (result: Tree[T])
-  extends TypTree[T] {
-    type ThisTree[-T >: Untyped] = ByNameTypeTree[T]
-  }
-
   /** >: lo <: hi */
   case class TypeBoundsTree[-T >: Untyped] private[ast] (lo: Tree[T], hi: Tree[T])
     extends TypTree[T] {
@@ -858,7 +852,6 @@ object Trees {
     type RefinedTypeTree = Trees.RefinedTypeTree[T]
     type AppliedTypeTree = Trees.AppliedTypeTree[T]
     type TypeLambdaTree = Trees.TypeLambdaTree[T]
-    type ByNameTypeTree = Trees.ByNameTypeTree[T]
     type TypeBoundsTree = Trees.TypeBoundsTree[T]
     type Bind = Trees.Bind[T]
     type Alternative = Trees.Alternative[T]
@@ -1039,10 +1032,6 @@ object Trees {
         case tree: TypeLambdaTree if (tparams eq tree.tparams) && (body eq tree.body) => tree
         case _ => finalize(tree, untpd.TypeLambdaTree(tparams, body))
       }
-      def ByNameTypeTree(tree: Tree)(result: Tree): ByNameTypeTree = tree match {
-        case tree: ByNameTypeTree if result eq tree.result => tree
-        case _ => finalize(tree, untpd.ByNameTypeTree(result))
-      }
       def TypeBoundsTree(tree: Tree)(lo: Tree, hi: Tree): TypeBoundsTree = tree match {
         case tree: TypeBoundsTree if (lo eq tree.lo) && (hi eq tree.hi) => tree
         case _ => finalize(tree, untpd.TypeBoundsTree(lo, hi))
@@ -1173,8 +1162,6 @@ object Trees {
           cpy.AppliedTypeTree(tree)(transform(tpt), transform(args))
         case TypeLambdaTree(tparams, body) =>
           cpy.TypeLambdaTree(tree)(transformSub(tparams), transform(body))
-        case ByNameTypeTree(result) =>
-          cpy.ByNameTypeTree(tree)(transform(result))
         case TypeBoundsTree(lo, hi) =>
           cpy.TypeBoundsTree(tree)(transform(lo), transform(hi))
         case Bind(name, body) =>
@@ -1280,8 +1267,6 @@ object Trees {
           case TypeLambdaTree(tparams, body) =>
             implicit val ctx: Context = localCtx
             this(this(x, tparams), body)
-          case ByNameTypeTree(result) =>
-            this(x, result)
           case TypeBoundsTree(lo, hi) =>
             this(this(x, lo), hi)
           case Bind(name, body) =>

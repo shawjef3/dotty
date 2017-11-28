@@ -372,8 +372,6 @@ class TreeUnpickler(reader: TastyReader, tastyName: TastyName.Table) {
           ConstantType(Constant(null))
         case CLASSconst =>
           ConstantType(Constant(readType()))
-        case BYNAMEtype =>
-          ExprType(readType())
       }
 
       if (tag < firstLengthTreeTag) readSimpleType() else readLengthType()

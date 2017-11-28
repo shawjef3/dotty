@@ -68,7 +68,6 @@ class Compiler {
            new SeqLiterals,         // Express vararg arguments as arrays
            new InterceptedMethods,  // Special handling of `==`, `|=`, `getClass` methods
            new Getters,             // Replace non-private vals and vars with getter defs (fields are added later)
-           new ElimByName,          // Expand by-name parameters and arguments
            new AugmentScala2Traits, // Expand traits defined in Scala 2.11 to simulate old-style rewritings
            new ResolveSuper,        // Implement super accessors and add forwarders to trait methods
            new ArrayConstructors),  // Intercept creation of (non-generic) arrays and intrinsify.

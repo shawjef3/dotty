@@ -274,7 +274,6 @@ object TastyFormat {
   final val THIS = 96
   final val CLASSconst = 97
   final val ENUMconst = 98
-  final val BYNAMEtype = 99
   final val NEW = 100
   final val IMPLICITarg = 101
   final val PRIVATEqualified = 102
@@ -482,7 +481,6 @@ object TastyFormat {
     case TYPEALIAS => "TYPEALIAS"
     case ANDtype => "ANDtype"
     case ORtype => "ORtype"
-    case BYNAMEtype => "BYNAMEtype"
     case POLYtype => "POLYtype"
     case METHODtype => "METHODtype"
     case PARAMtype => "PARAMtype"
